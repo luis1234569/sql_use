@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="6"
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="1205,0" last-zoom="1" max-obj-count="6"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -21,7 +21,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
  password="********">
 </role>
 
-<database name="test3" encoding="UTF8" lc-collate="Spanish_Ecuador.1252" lc-ctype="Spanish_Ecuador.1252" is-template="false" allow-conns="true">
+<database name="notitest" encoding="UTF8" lc-collate="Spanish_Ecuador.1252" lc-ctype="Spanish_Ecuador.1252" is-template="false" allow-conns="true">
 	<role name="postgres"/>
 	<tablespace name="pg_default"/>
 </database>
@@ -29,15 +29,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
-<schema name="UZNT" layers="0" rect-visible="true" fill-color="#ee4cee">
-	<role name="postgres"/>
+<schema name="UZNT" layers="0" rect-visible="true" fill-color="#0ca862">
+	<role name="&quot;UTIC&quot;"/>
+	<comment><![CDATA[esquema de las notificacioniones ademas de las tablas ]]></comment>
 </schema>
 
 <table name="UZNTSYSTEM" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="&quot;UZNT&quot;"/>
 	<role name="&quot;UTIC&quot;"/>
 	<comment><![CDATA[systema de donde se esta enviando la notificacion]]></comment>
-	<position x="60" y="60"/>
+	<position x="120" y="140"/>
 	<column name="UZNTSYSTEM_ID" not-null="true">
 		<type name="integer" length="0"/>
 		<comment><![CDATA[identificador de la tabla de sistema]]></comment>
@@ -84,7 +85,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="&quot;UZNT&quot;"/>
 	<role name="&quot;UTIC&quot;"/>
 	<comment><![CDATA[se indica la opcion de la notificacion y a que sistema pertenece]]></comment>
-	<position x="500" y="60"/>
+	<position x="560" y="140"/>
 	<column name="UZNTOPTION_ID" not-null="true">
 		<type name="integer" length="0"/>
 		<comment><![CDATA[Identificador de la tabla option]]></comment>
@@ -135,7 +136,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="&quot;UZNT&quot;"/>
 	<role name="&quot;UTIC&quot;"/>
 	<comment><![CDATA[tabla para indicar el tipoo de notificacion indicado]]></comment>
-	<position x="960" y="60"/>
+	<position x="1020" y="140"/>
 	<column name="UZNTNOTIFICATION_TYPE_ID" not-null="true">
 		<type name="integer" length="0"/>
 		<comment><![CDATA[identificador de la tabla tipo de notificacion]]></comment>
@@ -174,7 +175,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="&quot;UZNT&quot;"/>
 	<role name="&quot;UTIC&quot;"/>
 	<comment><![CDATA[todos los valores de la notificacion correspondiente]]></comment>
-	<position x="1460" y="60"/>
+	<position x="1520" y="140"/>
 	<column name="UZNTNOTIFICATION_ID" not-null="true">
 		<type name="integer" length="0"/>
 		<comment><![CDATA[identificador de la fila de la tabla de notificaciones]]></comment>
@@ -245,7 +246,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="&quot;UZNT&quot;"/>
 	<role name="&quot;UTIC&quot;"/>
 	<comment><![CDATA[rango de grupos asignados]]></comment>
-	<position x="1960" y="60"/>
+	<position x="2020" y="140"/>
 	<column name="UZNTGROUP_ID" not-null="true">
 		<type name="integer" length="0"/>
 		<comment><![CDATA[identificado del regitro de datos en la tabla grupos]]></comment>
@@ -292,36 +293,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<sequence name="UZMSSYSTEM_ID" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1" owner-col="&quot;UZNT&quot;.&quot;UZNTSYSTEM&quot;.&quot;UZNTSYSTEM_ID&quot;">
-	<schema name="&quot;UZNT&quot;"/>
-	<role name="&quot;UTIC&quot;"/>
-	<comment><![CDATA[SECUENCIA DE SYSTEM]]></comment>
-</sequence>
-
-<sequence name="UZMSOPTION_ID" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1" owner-col="&quot;UZNT&quot;.&quot;UZNTOPTION&quot;.&quot;UZNTOPTION_ID&quot;">
-	<schema name="&quot;UZNT&quot;"/>
-	<role name="&quot;UTIC&quot;"/>
-	<comment><![CDATA[SECUENCIA DE OPTION]]></comment>
-</sequence>
-
-<sequence name="UZMSNOTIFICATION_TYPE_ID" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1" owner-col="&quot;UZNT&quot;.&quot;UZNTNOTIFICATION_TYPE&quot;.&quot;UZNTNOTIFICATION_TYPE_ID&quot;">
-	<schema name="&quot;UZNT&quot;"/>
-	<role name="&quot;UTIC&quot;"/>
-	<comment><![CDATA[SECUENCIA DE TIPOS DE NOTIFICACIONES]]></comment>
-</sequence>
-
-<sequence name="UZMSGROUP_ID" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1" owner-col="&quot;UZNT&quot;.&quot;UZNTGROUP&quot;.&quot;UZNTGROUP_ID&quot;">
-	<schema name="&quot;UZNT&quot;"/>
-	<role name="&quot;UTIC&quot;"/>
-	<comment><![CDATA[SECUENCIA DE GRUPOS]]></comment>
-</sequence>
-
-<sequence name="UZMSNOTIFICATION_ID" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1" owner-col="&quot;UZNT&quot;.&quot;UZNTNOTIFICATION&quot;.&quot;UZNTNOTIFICATION_ID&quot;">
-	<schema name="&quot;UZNT&quot;"/>
-	<role name="&quot;UTIC&quot;"/>
-	<comment><![CDATA[SECUENCIA DE NOTIFICACIONES]]></comment>
-</sequence>
-
 <constraint name="FK_SYSTEM" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="&quot;UZNT&quot;.&quot;UZNTSYSTEM&quot;" table="&quot;UZNT&quot;.&quot;UZNTOPTION&quot;">
 	<columns names="UZNTOPTION_SYSTEM_ID" ref-type="src-columns"/>
@@ -344,19 +315,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <relationship name="&quot;rel_UZNTOPTION_UZNTSYSTEM&quot;" type="relfk" layers="0"
-	 custom-color="#b60038"
+	 custom-color="#8f6651"
 	 src-table="&quot;UZNT&quot;.&quot;UZNTOPTION&quot;"
 	 dst-table="&quot;UZNT&quot;.&quot;UZNTSYSTEM&quot;" reference-fk="FK_SYSTEM"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="&quot;rel_UZNTNOTIFICATION_UZNTOPTION&quot;" type="relfk" layers="0"
-	 custom-color="#1ae309"
+	 custom-color="#9d12fb"
 	 src-table="&quot;UZNT&quot;.&quot;UZNTNOTIFICATION&quot;"
 	 dst-table="&quot;UZNT&quot;.&quot;UZNTOPTION&quot;" reference-fk="FK_OPTION"
 	 src-required="false" dst-required="true"/>
 
 <relationship name="&quot;rel_UZNTNOTIFICATION_UZNTNOTIFICATION_TYPE&quot;" type="relfk" layers="0"
-	 custom-color="#ca2245"
+	 custom-color="#931106"
 	 src-table="&quot;UZNT&quot;.&quot;UZNTNOTIFICATION&quot;"
 	 dst-table="&quot;UZNT&quot;.&quot;UZNTNOTIFICATION_TYPE&quot;" reference-fk="FK_NOTIFICATION_TYPE"
 	 src-required="false" dst-required="true"/>
