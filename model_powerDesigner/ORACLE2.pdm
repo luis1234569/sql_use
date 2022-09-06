@@ -4842,7 +4842,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>indicar si el sql tiene parametros o no</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o38">
 <a:ObjectID>3D4BDC44-02D9-4244-9A3E-BEDBD4199623</a:ObjectID>
@@ -4853,7 +4853,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>indica si el grupo esta en constancia o no</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o39">
 <a:ObjectID>C3E43E26-2D15-4AA0-80C7-AA86BD30B07A</a:ObjectID>
@@ -5063,7 +5063,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>se muestra si la notificacion esta activa o no</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o54">
 <a:ObjectID>D67945CA-0A80-426E-9AE9-583999B4E284</a:ObjectID>
@@ -5074,7 +5074,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>muestra si la notificacion fue leida o no</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o55">
 <a:ObjectID>03DC4AF1-EF45-4D44-B024-9F1446E9A559</a:ObjectID>
@@ -5273,7 +5273,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>indicar si el tipo de notificacion esta activo</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o69">
 <a:ObjectID>FF24C849-18F8-419A-B872-5B8BAE6511D8</a:ObjectID>
@@ -5469,7 +5469,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>indicador si la option esta activa o no</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o82">
 <a:ObjectID>E8E6809C-06B6-46AE-B363-D12C1AF7CAB8</a:ObjectID>
@@ -5584,7 +5584,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1662399725</a:ModificationDate>
 <a:Modifier>ESPE</a:Modifier>
 <a:Comment>muestra si esta activo o desactivo el sistema</a:Comment>
-<a:DataType>SMALLINT</a:DataType>
+<a:DataType>NUMBER(1)</a:DataType>
 </o:Column>
 <o:Column Id="o90">
 <a:ObjectID>C0FE2FB9-0084-4991-9755-79B424B00B90</a:ObjectID>
