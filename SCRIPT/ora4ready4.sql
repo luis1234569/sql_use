@@ -352,6 +352,12 @@ comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_NOMBRE is
 comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_URL is 
 'URL DEL INICIACION DEL SISTEMA';
 
+comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_ESTADO is
+'muestra si esta activo o desactivo el sistema';
+
+comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_CODIGO is
+'indicar el codigo del sistem';
+
 
 alter table UTIC.UZMTMESSAGE
    add constraint FK_UZMTMESSAGE_UZMTNOTIFICATIONTYPE foreign key (UZMTNOTIFICATIONTYPE_ID)

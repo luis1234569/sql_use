@@ -74,15 +74,15 @@ start with 1
 /*==============================================================*/
 create table utic.uzmtgroup (
    uzmtgroup_id    integer     default nextval('utic.uzmsgroup_id') not null,
-   uzmtgroup_name       varchar(200)         null,
+   uzmtgroup_name       varchar(70)         null,
    uzmtgroup_description varchar(200)         null,
    uzmtgroup_script     varchar(200)         null,
    uzmtgroup_parametro  numeric(1)           null,
    uzmtgroup_active     numeric(1)           null,
    uzmtgroup_fecha_crea date                 null,
-   uzmtgroup_usua_crea  varchar(200)         null,
+   uzmtgroup_usua_crea  numeric(8)         null,
    uzmtgroup_fecha_modif date                 null,
-   uzmtgroup_usua_modif varchar(200)         null,
+   uzmtgroup_usua_modif numeric(8)         null,
    constraint pk_uzmtgroup primary key (uzmtgroup_id)
 );
 
@@ -127,14 +127,14 @@ comment on column utic.uzmtgroup.uzmtgroup_usua_modif is
 /*==============================================================*/
 create table utic.uzmtmessage (
    uzmtmessage_id    integer   default nextval('utic.uzmsmessage_id') not null,
-   uzmtnotificationtype_id int4                 null,
+   uzmtnotificationtype_id integer                 null,
    uzmtmessage_header   varchar(200)         null,
-   uzmtmessage_body     char                 null,
+   uzmtmessage_body     text                 null,
    uzmtmessage_active   numeric(1)           null,
    uzmtmessage_usua_crea numeric(8)           null,
    uzmtmessage_fecha_crea date                 null,
-   uzmtmessage_usua_update numeric(8)           null,
-   uzmtmessage_fecha_update date                 null,
+   uzmtmessage_usua_modif numeric(8)           null,
+   uzmtmessage_fecha_modif date                 null,
    constraint pk_uzmtmessage primary key (uzmtmessage_id)
 );
 
@@ -159,10 +159,10 @@ comment on column utic.uzmtmessage.uzmtmessage_usua_crea is
 comment on column utic.uzmtmessage.uzmtmessage_fecha_crea is
 'fecha cuando se creo el mensaje';
 
-comment on column utic.uzmtmessage.uzmtmessage_usua_update is
+comment on column utic.uzmtmessage.uzmtmessage_usua_modif is
 'el usuario quien actualizo el mensaje';
 
-comment on column utic.uzmtmessage.uzmtmessage_fecha_update is
+comment on column utic.uzmtmessage.uzmtmessage_fecha_modif is
 'fecha cuando se actualizo el mensaje';
 
 -- set table ownership
@@ -173,16 +173,16 @@ comment on column utic.uzmtmessage.uzmtmessage_fecha_update is
 /*==============================================================*/
 create table utic.uzmtnotification (
    uzmtnotification_id  integer     default nextval('utic.uzmsnotification_id') not null,
-   uzmtoption_id int4                 null,
-   uzmtmessage_id       int4                 null,
-   uzmtnotification_pidm_receiver varchar(200)         null,
+   uzmtoption_id   integer                 null,
+   uzmtmessage_id       integer                 null,
+   uzmtnotification_pidm_receiver numeric(8)         null,
    uzmtnotification_active numeric(1)           null,
    uzmtnotification_read numeric(1)           null,
    uzmtnotification_read_date date                 null,
    uzmtnotification_fecha_crea date                 null,
-   uzmtnotification_usua_crea varchar(200)         null,
+   uzmtnotification_usua_crea numeric(8)         null,
    uzmtnotification_fecha_modif date                 null,
-   uzmtnotification_usua_modif varchar(200)         null,
+   uzmtnotification_usua_modif numeric(8)         null,
    constraint pk_uzmtnotification primary key (uzmtnotification_id)
 );
 
@@ -192,10 +192,10 @@ comment on table utic.uzmtnotification is
 comment on column utic.uzmtnotification.uzmtnotification_id is
 'identificador de la fila de la notificacion';
 
-comment on column utic.uzmtnotification.uzmtnotification_option_id is
+comment on column utic.uzmtnotification.uzmtoption_id is
 'relacion que existe en la tabla notificacion con la opcion';
 
-comment on column utic.uzmtnotification.uzmtnotification_receiver is
+comment on column utic.uzmtnotification.uzmtnotification_pidm_receiver is
 'a quien va dirijido la notificacion';
 
 comment on column utic.uzmtnotification.uzmtnotification_active is
@@ -229,9 +229,9 @@ create table utic.uzmtnotificationtype (
    uzmtnotificationtype_id integer     default nextval('utic.uzmsnotificationtype_id') not null,
    uzmtnotificationtype_name varchar(200)         null,
    uzmtnotificationtype_active numeric(1)           null,
-   uzmtnotificationtype_usua_crea varchar(200)         null,
+   uzmtnotificationtype_usua_crea numeric(8)         null,
    uzmtnotificationtype_fecha_crea date                 null,
-   uzmtnotificationtype_usua_modif varchar(200)         null,
+   uzmtnotificationtype_usua_modif numeric(8)         null,
    uzmtnotificationtype_fecha_modif date                 null,
    constraint pk_uzmtnotificationtype primary key (uzmtnotificationtype_id)
 );
@@ -268,13 +268,13 @@ comment on column utic.uzmtnotificationtype.uzmtnotificationtype_fecha_modif is
 /*==============================================================*/
 create table utic.uzmtoption (
    uzmtoption_id        integer     default nextval('utic.uzmsoption_id')                 not null,
-   uzmtoption_system_id integer                 null,
+   uzstsistema_id integer                 null,
    uzmtoption_name      varchar(200)         null,
    uzmtoption_active    numeric(1)           null,
    uzmtoption_fecha_crea date                 null,
-   uzmtoption_usua_crea varchar(200)         null,
+   uzmtoption_usua_crea numeric(8)         null,
    uzmtoption_fecha_modif date                 null,
-   uzmtoption_usua_modif varchar(200)         null,
+   uzmtoption_usua_modif numeric(8)         null,
    constraint pk_uzmtoption primary key (uzmtoption_id)
 );
 
@@ -284,7 +284,7 @@ comment on table utic.uzmtoption is
 comment on column utic.uzmtoption.uzmtoption_id is
 'identificador de la fila de opciones';
 
-comment on column utic.uzmtoption.uzmtoption_system_id is
+comment on column utic.uzmtoption.uzstsistema_id is
 'llave foranea en relacion con la tabla sistem';
 
 comment on column utic.uzmtoption.uzmtoption_name is
@@ -323,26 +323,44 @@ create table utic.uzstsistema (
 comment on table utic.uzstsistema is
 'tabla donde se especificara el ingreso del sistema al que pertenece la notifacion';
 
-comment on column utic.uzstsistema.uzstsistema_id is
-'identificador de la fila de sistemas';
+-- comment on column utic.uzstsistema.uzstsistema_id is
+-- 'identificador de la fila de sistemas';
 
-comment on column utic.uzstsistema.uzstsistema_name is
-'nombre asignado para el sistema';
+-- comment on column utic.uzstsistema.uzstsistema_name is
+-- 'nombre asignado para el sistema';
 
-comment on column utic.uzstsistema.uzstsistema_active is
+-- comment on column utic.uzstsistema.uzstsistema_active is
+-- 'muestra si esta activo o desactivo el sistema';
+
+-- comment on column utic.uzstsistema.uzstsistema_fecha_crea is
+-- 'es la fecha de creacion del sistema';
+
+-- comment on column utic.uzstsistema.uzstsistema_usua_crea is
+-- 'el usuario que creo el sistema';
+
+-- comment on column utic.uzstsistema.uzstsistema_fecha_modif is
+-- 'la fecha cuando fua actualizado el sistema';
+
+-- comment on column utic.uzstsistema.uzstsistema_usua_modif is
+-- 'el usuario que actualizo el registro del sistema';
+
+
+comment on column utic.uzstsistema.uzstsistema_id is 
+'CODIGO SECUENCIAL DE LA TABLA, ESTE DATO SERA GENERADO AUTOMATICAMENTE  MEDIANTE LA UTILIZACION DE UN TRIGGER.';
+
+
+comment on column utic.uzstsistema.uzstsistema_nombre is 
+'DESCRIPCION DEL SISTEMA';
+
+
+comment on column utic.uzstsistema.uzstsistema_url is 
+'URL DEL INICIACION DEL SISTEMA';
+
+comment on column utic.uzstsistema.uzstsistema_estado is
 'muestra si esta activo o desactivo el sistema';
 
-comment on column utic.uzstsistema.uzstsistema_fecha_crea is
-'es la fecha de creacion del sistema';
-
-comment on column utic.uzstsistema.uzstsistema_usua_crea is
-'el usuario que creo el sistema';
-
-comment on column utic.uzstsistema.uzstsistema_fecha_modif is
-'la fecha cuando fua actualizado el sistema';
-
-comment on column utic.uzstsistema.uzstsistema_usua_modif is
-'el usuario que actualizo el registro del sistema';
+comment on column utic.uzstsistema.uzstsistema_codigo is
+'indicar el codigo del sistem';
 
 -- set table ownership
 -- alter table utic.uzstsistema owner to utic
@@ -358,13 +376,120 @@ alter table utic.uzmtnotification
       on delete restrict on update restrict;
 
 alter table utic.uzmtnotification
-   add constraint fk_uzmtnoti_fk_uzmtno_uzmtopti foreign key (uzmtnotification_option_id)
+   add constraint fk_uzmtnoti_fk_uzmtno_uzmtopti foreign key (uzmtoption_id)
       references utic.uzmtoption (uzmtoption_id)
       on delete restrict on update restrict;
 
 alter table utic.uzmtoption
-   add constraint fk_uzmtopti_fk_uzmtop_uzmtsyst foreign key (uzmtoption_system_id)
+   add constraint fk_uzmtopti_fk_uzmtop_uzmtsyst foreign key (uzstsistema_id)
       references utic.uzstsistema (uzstsistema_id)
       on delete restrict on update restrict;
+
+
+INSERT INTO utic.uzmtgroup(
+	 uzmtgroup_name, 
+    uzmtgroup_description, 
+    uzmtgroup_script, 
+    uzmtgroup_parametro, 
+    uzmtgroup_active, 
+    uzmtgroup_fecha_crea, 
+    uzmtgroup_usua_crea, 
+    uzmtgroup_fecha_modif, 
+    uzmtgroup_usua_modif)
+	VALUES (
+	 'uzmtgroup_name', 
+    'uzmtgroup_description', 
+    'uzmtgroup_script', 
+    1, 
+    1, 
+    now(), 
+    123789, 
+    now(), 
+    123789);
+
+INSERT INTO utic.uzstsistema(
+	 uzstsistema_nombre, 
+    uzstsistema_estado, 
+    uzstsistema_url, 
+    uzstsistema_codigo)
+	VALUES (
+	 'uzstsistema_nombre', 
+    1, 
+    'uzstsistema_url', 
+    'uzstsistema_codigo');
+
+INSERT INTO utic.uzmtnotificationtype(
+	 uzmtnotificationtype_name, 
+    uzmtnotificationtype_active, 
+    uzmtnotificationtype_usua_crea, 
+    uzmtnotificationtype_fecha_crea, 
+    uzmtnotificationtype_usua_modif, 
+    uzmtnotificationtype_fecha_modif)
+	VALUES (
+	 'uzmtnotificationtype_name', 
+    1, 
+    123789, 
+    now(), 
+    123789, 
+    now());
+
+INSERT INTO utic.uzmtoption(
+	 uzstsistema_id, 
+    uzmtoption_name, 
+    uzmtoption_active, 
+    uzmtoption_fecha_crea, 
+    uzmtoption_usua_crea, 
+    uzmtoption_fecha_modif, 
+    uzmtoption_usua_modif)
+	VALUES (
+	 1, 
+    'uzmtoption_name', 
+    1, 
+    now(), 
+    123789, 
+    now(), 
+    123789);
+
+INSERT INTO utic.uzmtmessage(
+	 uzmtnotificationtype_id, 
+    uzmtmessage_header, 
+    uzmtmessage_body, 
+    uzmtmessage_active, 
+    uzmtmessage_usua_crea, 
+    uzmtmessage_fecha_crea, 
+    uzmtmessage_usua_modif, 
+    uzmtmessage_fecha_modif)
+	VALUES (
+	 1, 
+    'uzmtmessage_header', 
+    'uzmtmessage_body', 
+    1, 
+    123789, 
+    now(), 
+    123789, 
+    now());
+
+INSERT INTO utic.uzmtnotification(
+	 uzmtoption_id, 
+    uzmtmessage_id, 
+    uzmtnotification_pidm_receiver, 
+    uzmtnotification_active, 
+    uzmtnotification_read, 
+    uzmtnotification_read_date, 
+    uzmtnotification_fecha_crea, 
+    uzmtnotification_usua_crea, 
+    uzmtnotification_fecha_modif, 
+    uzmtnotification_usua_modif)
+	VALUES (
+	 1, 
+    1, 
+    123789, 
+    1, 
+    1, 
+    now(), 
+    now(), 
+    123789, 
+    now(), 
+    123789);
 
 
