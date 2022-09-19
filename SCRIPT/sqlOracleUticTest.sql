@@ -1,54 +1,3 @@
-alter table UTIC.UZMTMESSAGE
-   drop constraint FK_UZMTMESSAGE_UZMTNOTIFICATIONTYPE;
-
-alter table UTIC.UZMTNOTIFICATION
-   drop constraint FK_UZMTNOTIFICATION_UZMTMESSAGE;
-
-alter table UTIC.UZMTNOTIFICATION
-   drop constraint FK_UZMTNOTIFICATION_UZMTOPTION;
-
-alter table UTIC.UZMTOPTION
-   drop constraint FK_UZMTOPTION_UZSTSISTEMA;
-
-drop table UTIC.UZMTGROUP cascade constraints;
-
-drop table UTIC.UZMTMESSAGE cascade constraints;
-
-drop table UTIC.UZMTNOTIFICATION cascade constraints;
-
-drop table UTIC.UZMTNOTIFICATIONTYPE cascade constraints;
-
-drop table UTIC.UZMTOPTION cascade constraints;
-
-drop table UTIC.UZSTSISTEMA cascade constraints;
-
-drop sequence SEQUENCE_7;
-
-drop sequence UTIC.SEQ_UZSTSISTEMA;
-
-drop sequence UTIC.UZMSGROUP_ID;
-
-drop sequence UTIC.UZMSMESSAGE_ID;
-
-drop sequence UTIC.UZMSNOTIFICATIONTYPE_ID;
-
-drop sequence UTIC.UZMSNOTIFICATION_ID;
-
-drop sequence UTIC.UZMSOPTION_ID;
-
-drop user UTIC;
-
-/*==============================================================*/
-/* User: UTIC                                                   */
-/*==============================================================*/
-create user UTIC 
-  identified by "";
-
-create sequence SEQUENCE_7;
-
-create sequence UTIC.SEQ_UZSTSISTEMA
-increment by 1
-start with 1;
 
 create sequence UTIC.UZMSGROUP_ID
 increment by 1
@@ -58,11 +7,11 @@ create sequence UTIC.UZMSMESSAGE_ID
 increment by 1
 start with 1;
 
-create sequence UTIC.UZMSNOTIFICATIONTYPE_ID
+create sequence UTIC.UZMSNOTIFICATION_ID
 increment by 1
 start with 1;
 
-create sequence UTIC.UZMSNOTIFICATION_ID
+create sequence UTIC.UZMSNOTIFICATIONTYPE_ID
 increment by 1
 start with 1;
 
@@ -70,16 +19,17 @@ create sequence UTIC.UZMSOPTION_ID
 increment by 1
 start with 1;
 
+
 /*==============================================================*/
 /* Table: UZMTGROUP                                             */
 /*==============================================================*/
 create table UTIC.UZMTGROUP (
-   UZMTGROUP_ID         NUMBER                not null,
-   UZMTGROUP_NAME       VARCHAR2(60),
-   UZMTGROUP_DESCRIPTION VARCHAR2(200),
-   UZMTGROUP_SCRIPT     VARCHAR2(200),
-   UZMTGROUP_PARAMETRO  NUMBER(1,0),
-   UZMTGROUP_ACTIVE     NUMBER(1,0),
+   UZMTGROUP_ID         NUMBER               not null,
+   UZMTGROUP_NAME       VARCHAR2(60)  not null,
+   UZMTGROUP_DESCRIPTION VARCHAR2(200) ,
+   UZMTGROUP_SCRIPT     VARCHAR2(200) not null,
+   UZMTGROUP_PARAMETRO  NUMBER(1,0) not null,
+   UZMTGROUP_ACTIVE     NUMBER(1,0)  not null,
    UZMTGROUP_FECHA_CREA DATE,
    UZMTGROUP_USUA_CREA  NUMBER(8),
    UZMTGROUP_FECHA_MODIF DATE,
@@ -124,11 +74,11 @@ comment on column UTIC.UZMTGROUP.UZMTGROUP_USUA_MODIF is
 /* Table: UZMTMESSAGE                                           */
 /*==============================================================*/
 create table UTIC.UZMTMESSAGE (
-   UZMTMESSAGE_ID       NUMBER                not null,
-   UZMTNOTIFICATIONTYPE_ID NUMBER,
-   UZMTMESSAGE_HEADER   VARCHAR2(200),
-   UZMTMESSAGE_BODY     BLOB,
-   UZMTMESSAGE_ACTIVE   NUMBER(1,0),
+   UZMTMESSAGE_ID       NUMBER               not null,
+   UZMTNOTIFICATIONTYPE_ID NUMBER   not null,
+   UZMTMESSAGE_HEADER   VARCHAR2(200)  not null,
+   UZMTMESSAGE_BODY     BLOB  not null,
+   UZMTMESSAGE_ACTIVE   NUMBER(1,0)   not null,
    UZMTMESSAGE_USUA_CREA NUMBER(8),
    UZMTMESSAGE_FECHA_CREA DATE,
    UZMTMESSAGE_USUA_UPDATE NUMBER(8),
@@ -167,11 +117,11 @@ comment on column UTIC.UZMTMESSAGE.UZMTMESSAGE_FECHA_UPDATE is
 /* Table: UZMTNOTIFICATION                                      */
 /*==============================================================*/
 create table UTIC.UZMTNOTIFICATION (
-   UZMTNOTIFICATION_ID  NUMBER                not null,
-   UZMTOPTION_ID        NUMBER,
-   UZMTMESSAGE_ID       NUMBER,
-   UZMTNOTIFICATION_PIDM_RECEIVER NUMBER(8),
-   UZMTNOTIFICATION_ACTIVE NUMBER(1,0),
+   UZMTNOTIFICATION_ID  NUMBER               not null,
+   UZMTOPTION_ID NUMBER  not null,
+   UZMTMESSAGE_ID       NUMBER  not null,
+   UZMTNOTIFICATION_PIDM_RECEIVER NUMBER(8)  not null,
+   UZMTNOTIFICATION_ACTIVE NUMBER(1,0)  not null,
    UZMTNOTIFICATION_READ NUMBER(1,0),
    UZMTNOTIFICATION_READ_DATE DATE,
    UZMTNOTIFICATION_FECHA_CREA DATE,
@@ -215,16 +165,16 @@ comment on column UTIC.UZMTNOTIFICATION.UZMTNOTIFICATION_USUA_MODIF is
 'el usuario que actualizo el registro de la notificacion';
 
 /*==============================================================*/
-/* Table: UZMTNOTIFICATIONTYPE                                  */
+/* Table: UZMTNOTIFICATIONTYPE                                 */
 /*==============================================================*/
 create table UTIC.UZMTNOTIFICATIONTYPE (
-   UZMTNOTIFICATIONTYPE_ID NUMBER                not null,
-   UZMTNOTIFICATIONTYPE_NAME VARCHAR2(60),
+   UZMTNOTIFICATIONTYPE_ID NUMBER               not null,
+   UZMTNOTIFICATIONTYPE_NAME VARCHAR2(60)  not null,
    UZMTNOTIFICATIONTYPE_ACTIVE NUMBER(1,0),
    UZMTNOTIFICATIONTYPE_USUA_CREA NUMBER(8),
-   UZMTNOTIFICATIONTYPE_FECHA_CRE DATE,
-   UZMTNOTIFICATIONTYPE_USUA_MODI NUMBER(8),
-   UZMTNOTIFICATIONTYPE_FECHA_MOD DATE,
+   UZMTNOTIFICATIONTYPE_FECHA_CREA DATE,
+   UZMTNOTIFICATIONTYPE_USUA_MODIF NUMBER(8),
+   UZMTNOTIFICATIONTYPE_FECHA_MODIF DATE,
    constraint PK_UZMTNOTIFICATIONTYPE primary key (UZMTNOTIFICATIONTYPE_ID)
 );
 
@@ -243,24 +193,25 @@ comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_ACTIVE is
 comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_USUA_CREA is
 'el usuario que creo el tipo de notificacion';
 
-comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_FECHA_CRE is
+comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_FECHA_CREA is
 'es la fecha de creacion del tipo de notificacion';
 
-comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_USUA_MODI is
+comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_USUA_MODIF is
 'el usuario que actualizo el registro del tipo de notificacion';
 
-comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_FECHA_MOD is
+comment on column UTIC.UZMTNOTIFICATIONTYPE.UZMTNOTIFICATIONTYPE_FECHA_MODIF is
 'la fecha cuando fue actualizado el tipo de notificacion';
 
 /*==============================================================*/
 /* Table: UZMTOPTION                                            */
 /*==============================================================*/
 create table UTIC.UZMTOPTION (
-   UZMTOPTION_ID        NUMBER                not null,
-   UZSTSISTEMA_ID       NUMBER,
-   UZMTOPTION_NAME      VARCHAR2(60),
-   UZMTOPTION_CODE      VARCHAR2(30)         default 'espeseguridades'  not null,
-   UZMTOPTION_ACTIVE    NUMBER(1,0),
+   UZMTOPTION_ID        NUMBER               not null,
+   UZSTSISTEMA_ID NUMBER  not null,
+   UZMTOPTION_NAME  VARCHAR2(60)      not null,
+   UZMTOPTION_DESCRIPTION  VARCHAR2(100)      ,
+   UZMTOPTION_CODE VARCHAR2(30)  ,
+   UZMTOPTION_ACTIVE    NUMBER(1,0)    not null,
    UZMTOPTION_FECHA_CREA DATE,
    UZMTOPTION_USUA_CREA NUMBER(8),
    UZMTOPTION_FECHA_MODIF DATE,
@@ -274,11 +225,17 @@ comment on table UTIC.UZMTOPTION is
 comment on column UTIC.UZMTOPTION.UZMTOPTION_ID is
 'identificador de la fila de opciones';
 
+comment on column UTIC.UZMTOPTION.UZSTSISTEMA_ID is
+'llave foranea en relacion con la tabla sistem';
+
 comment on column UTIC.UZMTOPTION.UZMTOPTION_NAME is
 'nombre de la opcion a seleccionar';
 
+comment on column UTIC.UZMTOPTION.UZMTOPTION_DESCRIPTION is
+'Descripcion de la opcion a seleccionar';
+
 comment on column UTIC.UZMTOPTION.UZMTOPTION_CODE is
-'nombre de la opcion a seleccionar';
+'codigo de la opcion a seleccionar';
 
 comment on column UTIC.UZMTOPTION.UZMTOPTION_ACTIVE is
 'indicador si la option esta activa o no';
@@ -295,31 +252,7 @@ comment on column UTIC.UZMTOPTION.UZMTOPTION_FECHA_MODIF is
 comment on column UTIC.UZMTOPTION.UZMTOPTION_USUA_MODIF is
 'el usuario que actualizo el registro de la opcion';
 
-/*==============================================================*/
-/* Table: UZSTSISTEMA                                           */
-/*==============================================================*/
-create table UTIC.UZSTSISTEMA (
-   UZSTSISTEMA_ID       NUMBER                not null,
-   UZSTSISTEMA_NOMBRE   VARCHAR2(60)          not null,
-   UZSTSISTEMA_URL      VARCHAR2(255),
-   UZSTSISTEMA_ESTADO   NUMBER,
-   UZSTSISTEMA_CODIGO   VARCHAR2(30)         default 'espeseguridades'  not null,
-   constraint PK_UZSTSISTEMA primary key (UZSTSISTEMA_ID)
-)
-   create unique index UTIC.INDX_UZSTSISTEMA_001
-       on UTIC.UZSTSISTEMA (UZSTSISTEMA_ID);
 
-comment on table UTIC.UZSTSISTEMA is
-'TABLA QUE GUARDA LOS DATOS DE LOS SISTEMAS DEL SNNA';
-
-comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_ID is
-'CODIGO SECUENCIAL DE LA TABLA, ESTE DATO SERA GENERADO AUTOMATICAMENTE  MEDIANTE LA UTILIZACION DE UN TRIGGER.';
-
-comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_NOMBRE is
-'DESCRIPCION DEL SISTEMA';
-
-comment on column UTIC.UZSTSISTEMA.UZSTSISTEMA_URL is
-'URL DEL INICIACION DEL SISTEMA';
 
 alter table UTIC.UZMTMESSAGE
    add constraint FK_UZMTMESSAGE_UZMTNOTIFICATIONTYPE foreign key (UZMTNOTIFICATIONTYPE_ID)
@@ -336,3 +269,4 @@ alter table UTIC.UZMTNOTIFICATION
 alter table UTIC.UZMTOPTION
    add constraint FK_UZMTOPTION_UZSTSISTEMA foreign key (UZSTSISTEMA_ID)
       references UTIC.UZSTSISTEMA (UZSTSISTEMA_ID);
+
